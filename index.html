@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Array Implementation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 50px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px;
+    }
+
+    #output {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <button onclick="pushElement()">Push Element</button>
+  <button onclick="popElement()">Pop Element</button>
+  <button onclick="displayTop()">Display Top</button>
+  <button onclick="displayArray()">Display Array</button>
+  <button onclick="displayArrayReverse()">Display Array in Reverse</button>
+  <button onclick="displaySize()">Display Size</button>
+
+  <div id="output"></div>
+
+  <script>
+    function pushElement() {
+      const element = prompt("Enter element to push:");
+      customArray.push(element);
+      displayArray();
+    }
+
+    function popElement() {
+      customArray.pop();
+      displayArray();
+    }
+
+    function displayTop() {
+      const topElement = customArray.top();
+      displayOutput(`Top Element: ${topElement}`);
+    }
+
+    function displayArray() {
+      const arrayString = customArrayToString();
+      displayOutput(`Array: ${arrayString}`);
+    }
+
+    function displayArrayReverse() {
+      const reverseArrayString = customArrayToString(true);
+      displayOutput(`Array in Reverse: ${reverseArrayString}`);
+    }
+
+    function displaySize() {
+      const size = customArray.size;
+      displayOutput(`Size: ${size}`);
+    }
+
+    function customArrayToString(reverse = false) {
+      const elements = [];
+      for (let i = reverse ? customArray.size - 1 : 0; reverse ? i >= 0 : i < customArray.size; reverse ? i-- : i++) {
+        elements.push(customArray[i]);
+      }
+      return `[${elements.join(',')}]`;
+    }
+
+    function displayOutput(message) {
+      document.getElementById("output").innerText = message;
+    }
+
+    const customArray = new CustomArray(1, 2, 3, 4);
+  </script>
+
+</body>
+</html>
